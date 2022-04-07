@@ -1,1 +1,1130 @@
-<!DOCTYPE html><html><head><meta name="author"content="@MagicalWatosan"><title>Mahoradle</title><link rel="stylesheet"href="stylesheet.css"/></head><body oncontextmenu="return false;"><table id="words"><colgroup id="tableCols"></colgroup></table><table border=0><tr><td colspan=3><form action=""onsubmit="return determine();"><input type="text"id="inputBox"><input type="submit"id="determineButton"value="決定"></form><tr><td><input type="button"id="button_reset"value="リセット"onclick="initialize(true);"><label id="label_button_reset"for="button_reset">リセット</label><td><div class="toggle_button"><input type='checkbox'id="rnd_choice"class="toggle_input"onclick="onclick_rnd_choice()"/><label for="rnd_choice"class="toggle_label"></label></div><td><span id="rndtxt"style="font-size: 13px; color:#999999">ランダム選択</span><tr><td><input type="button"id="button_hint"value="ヒント"onclick="nextHint()"/><tr><td colspan=3><div id="hintBox"></div><tr><td><input type="button"id="button_custom"value="カスタム作成"onclick="creatorDialog.showModal();"/></table><!-- --------------------------------------------------------------------------------------------------------------- --><dialog id="creatorDialog"><input type="button"value="×"onclick="creatorDialog.close();"><div id="create_error"></div><table id="table_range"><col class="col1"><col class="col2"><col class="col3"><tr><td colspan=2>スプレッドシートID,シート名!範囲<td align="right"><input type="button"id="checkButton"value="読取チェック"onclick="setCreateParams(this);"><tr><td colspan=3><textarea id="input_range"class="txt"rows=5 wrap="off"oninput="setCreateParams(this);"></textarea></table><table><tr><td>正解：<input type="text"value=""id="input_correctAnswer"onchange="setCreateParams(this);"disabled>ランダム：<span class="toggle_button"><input type='checkbox'id="create_random"class="toggle_input"onchange="setCreateParams(this);"checked/><label for="create_random"class="toggle_label"></label></span><tr><td>読込最小文字数：<input type="text"value=2 id="limit_word_minLength"onchange="setCreateParams(this);"><tr><td>読込最大文字数：<input type="text"value=100 id="limit_word_maxLength"onchange="setCreateParams(this);"><tr><td>回答最小文字数：<input type="text"value=4 id="limit_answer_minLength"onchange="setCreateParams(this);"><tr><td>回答最大文字数：<input type="text"value=100 id="limit_answer_maxLength"onchange="setCreateParams(this);"><tr><td>正解最小文字数：<input type="text"value=4 id="limit_correctAnswer_minLength"onchange="setCreateParams(this);"><tr><td>正解最大文字数：<input type="text"value=100 id="limit_correctAnswer_maxLength"onchange="setCreateParams(this);"><tr><td><select id="kanji_level"onchange="setCreateParams(this);"><option value=0>漢字を含まない</option><option value=1 selected>漢字のみの言葉は含まない</option><option value=2>漢字のみの言葉も含む</option></select></table><input type="button"id="button_createUrl"value="URL作成・コピー"onclick="setCreateParams(this);"disabled/><input type="button"id="button_goto"value="実行"/><input type="text"id="box_url"/></dialog><!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --><script type="text/javascript">eval(function(p,a,c,k,e,r){e=function(c){return(c<62?'':e(parseInt(c/62)))+((c=c%62)>35?String.fromCharCode(c+29):c.toString(36))};if('0'.replace(0,e)==0){while(c--)r[e(c)]=k[c];k=[function(e){return r[e]||e}];e=function(){return'^$'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('11 1y=1K 5f();11 3K=1K 5g();11 18={};19 2I=1;11 2y=[];11 3n=[];11 2T={2E:[{1g:"3U",1f:[\'名簿!2L:T\',\'コンテンツ1!3i:\',\'コンテンツ2!2L:C\']}],32:2,31:2p,2B:4,2A:2p,30:4,2Z:2p,2z:1,3H:22,18:2n};13("3B").1a="3U, 名簿!2L:T，コンテンツ1!3i:，コンテンツ2!2L:C\\n";11 1O="5b";11 1k=4V();11 1I=4U();3M();11 1q={};4T({});1c 4V(){67{11 p=1o.1M(5w(4H.5Z).2G(1));12(p.18){11 4q=p.18.1E("").1j((v,i)=>i%2==1?"":v).1J("");11 4s=5k(4q);p.18=4z(4s)}1i(19 1z 2h 2T){12(p[1z]==2n){p[1z]=2T[1z]}}28.38("1k",1o.2H(p));15 p}3m(e){3s.3D(e);11 p=1o.1M(28.3y("1k"));12(p){15 p}14{3s.3D("5V 5x 2E");15 2T}}}1c 4U(){11 h=1o.1M(28.3y("1I"));15 h?h:[]}1P 1c 4T(a){12(a.2W=="2O"){11 4L=4H.5K.33(/^[^?]*/)[0];11 2k=3z();1q.2E=2k.2v(s=>!s.3v).1j(17=>({1g:17.1g,1f:17.1f,1A:17.1A,1n:17.1n}));11 53=5B(4L+"?"+1o.2H(1q));13("2q").21=2n;13("2q").1m.2r="#3S";13("4h").1a=53;13("4h").60();2u.5C(\'5r\')}14 12(a.2W=="3B"){13("2O").21=2m;13("2q").1m.2r="#2K"}14 12(a.2W=="5o"){12(1e 4O()){13("2O").21=2n}14{13("2O").21=2m}13("2q").1m.2r="#2K"}14{11 3l=13("3t").1Z?"":13("4E").1a;12(3l==""){1q.18=1L}14{11 4o=51(3l);11 4w=5n(4o);11 4x=4w.1E("").1j(v=>v+""+3j.3w(1Y.2V(1Y.3G()*26)+65)).1J("");1q.18=4x}1q.3H=13("3t").1Z;1q.32=13("32").1a;1q.31=13("31").1a;1q.2B=13("2B").1a;1q.2A=13("2A").1a;1q.30=13("30").1a;1q.2Z=13("2Z").1a;1q.2z=13("2z").1a;13("2q").1m.2r="#2K";13("4E").21=13("3t").1Z}}1c 3L(a){15 2o(a.3I(/[ 　・～∼ー―\\-!！\\?？]/g,""))}1c 5Q(){12(2y.16==0){12(1y.2x(18.1a)){1y.1v(18.1a).1G(o=>{11 1H=o.39+"の"+o.3a+(o.2c?"("+o.2c+")":"");11 24=1H.1E("").1j((v,i)=>i);2y.1l({1d:2m,1H:1H,24:24,35:24.1j(v=>"*")})})}}11 1H=[];1i(19 o 2j 2y){12(o.24.16==0){1H.1l(o.35.1J(""))}14{11 1w=o.24.63(1Y.2V(1Y.3G()*o.24.16),1)[0];o.35[1w]=o.1H[1w];1H.1l(o.35.1J(""));4j}}13("4C").27=1H.1J("<4i>")}1c 5R(){13("5Y").1m.2r=13("36").1Z?"#3S":"#2K"}1c 4t(a,b){11 1h=a?a:13("2X").1a;12(1h!=18.1a&&(1h.16<1k.2B||1k.2A<1h.16)){13("2X").1m.4e="#5d";5i(1k.2B+"～"+1k.2A+"文字の範囲で入力してください","");15 22}14{13("2X").1m.4e="#5e"}11 4P=13("1W").4R.16;11 1N=13("1W").5M(4P);11 4W=3L(1h);12(3K.2x(4W)||1h==18.1a){11 2b=2o(1h);11 2F=18.1a.1E("");11 20=[];1i(19 i 2h 1h){12(i<18.1a.16&&1h[i]==18.1a[i]){20.1l("5s");2F[i]="\\0"}14{20.1l("34")}}1i(19 i 2h 1h){12(20[i]=="34"){11 1w=2F.3A(1h[i]);12(1w!=-1){20[i]="4J";2F[1w]="\\0"}}}11 1D=2F.1j(2o);1i(19 i 2h 1h){11 1u=1N.3C();12(20[i]!="34"){1u.3p.2N(20[i])}14{11 1w=1D.3A(2b[i]);12(1w!=-1){1u.3p.2N("4J");1D[1w]="\\0"}14{1u.3p.2N("34")}}1u.5L=1h[i];1u.3r=1}1N.3C();12(1h.16>=2I){19 1t="";4Z.27="";1i(19 i=0;i<1h.16;i++){1t+="<4m 1m=\'55: 56;\'>"}4Z.27=1t+"<4m 4g=\'1\'>";2I=1h.16+1;3n.1G(c=>c.3r=2I)}12(1h==18.1a){13("4u").21=2m;1i(19 i=0;i<1N.3o.16-1;i++){12(1N.3o[i]){1N.3o[i].1m.4g="62 58 5W"}}}}14{11 2b=2o(1h);11 1D=2o(18.1a).1E("");19 2s=0;19 2t=0;1i(19 i 2h 2b){12(i<1D.16&&2b[i]==1D[i]){2s++;1D[i]="\\0"}}1i(19 i 2h 2b){12(1D[i]!="\\0"){11 1w=1D.3A(2b[i]);12(1w!=-1){2t++;1D[1w]="\\0"}}}11 1u=1N.3C();1u.27="<2l 2R=\'5l\'>"+1h+"</2l>"+(2s||2t?":"+(2s?"<2l 2R=\'5t\'>●</2l>×"+2s:"")+(2t?"<2l 2R=\'5P\'>●</2l>×"+2t:""):"");1u.3r=2I;3n.1l(1u)}12(68){1I.1l(1h)}28.38("1I",1o.2H(1I));15 22}1c 2Q(a){11 1j={"(\\\\":"\\3e","\\\\)":"\\3f","（\\\\":"\\3g","\\\\）":"\\3h","\\3e":"(","\\3f":")","\\3g":"（","\\3h":"）"};15 a.3I(/\\(\\\\|\\\\\\)|（\\\\|\\\\）/g,m=>1j[m]).1E("\\n").5E(s=>{12(s.4X("//")){15[s]}14{15 s.1E(/[，\\n\\r\\t（）()]+/)}}).1j(v=>v.3I(/\\3e|\\3f|\\3g|\\3h/g,m=>1j[m])).2v(v=>1k.32<=v.16&&v.16<=1k.31)}1c 3k(a){12(a.16==0||a[0].16==0){15}14 12(a.16==1){a[0].1G(1u=>2Q(1u).1G(v=>{12(!1y.2x(v)){1y.3J(v,[])}}))}14 12(a[0].16==1){a.1G(1N=>2Q(1N[0]).1G(v=>{12(!1y.2x(v)){1y.3J(v,[])}}))}14{1i(19 i=1;i<a.16;i++){11 39=a[i][0];1i(19 j=1;j<a[i].16;j++){11 3a=a[0][j];11 1W=2Q(a[i][j]);19 2c="";1W.1G(v=>{11 3P={39:39,3a:3a,2c:2c.16>0?2c:2n};12(v.4X("//")){2c=v.2G(2).3d()}14 12(1y.2x(v)){1y.1v(v).1l(3P)}14{1y.3J(v,[3P]);3K.2N(3L(v))}})}}}}1c 4M(){11 4F=1k.2z==0?/([\\u{3Y}\\u{3Z}\\u{40}\\u{41}-\\u{42}\\u{47}-\\u{48}\\u{3W}-\\u{3X}][\\u{45}-\\u{46}\\u{49}-\\u{4a}]?)/4I:1k.2z==1?/^([\\u{3Y}\\u{3Z}\\u{40}\\u{41}-\\u{42}\\u{47}-\\u{48}\\u{3W}-\\u{3X}][\\u{45}-\\u{46}\\u{49}-\\u{4a}]?|[ 　])+$/4I:/^$/;11 1W=5c.5F(1y.5N()).2v(2J=>{11 l=2J.16;12(l<1k.30||1k.2Z<l){15 22}14{15!4F.3Q(2J)}});15 1W[1Y.2V(1W.16*1Y.3G())]}1P 1c 4D(a){11 3R=13("1W");54(3R.4R[0]){3R.5y(0)}18.4K=18.1a;11 3c=1K 43();11 59=3c.52().2G(0,10);11 3N=28.3y("18");11 3O=!13("36").1Z&&3N?1o.1M(3N).1a:1L;12(13("36").1Z){1k.18=1L}12(18.1a=1k.18){}14 12(!a&&3O){18.1a=3O}14 12(1k.3H||13("36").1Z){18.1a=4M()}14{11 17=2M.1v("57，シート1!3i:B");11 1n=(1e 17.3x())[0];11 1p="1R://1B.25.1Q/2e/1V/"+17.1g+"/1F/"+1n+"?1z="+1O;11 1d=1e 23(1p,{29:"1v"});12(1d.2D){11 1r=1o.1M(1e 1d.2d()).1F;1i(19 i=0;i<1r.16;i++){12(1r[i][0]!=""&&1r[i][1]!=""){11 4r=1K 43(1r[i][0]);12(4r>3c){4j}18.1a=1r[i][1]}}}18.5v=3c.52().2G(0,10)}12(a||18.4K!=18.1a){1I.16=0;28.38("1I",1o.2H(1I))}14{1I.1G(2J=>4t(2J,22))}28.38("18",1o.2H(18));2y.16=0;13("2X").1a="";13("4C").27="";13("4u").21=2n}1P 1c 2w(a){11 1p="1R://1B.25.1Q/2e/1V/"+a+"?1z="+1O;11 1d=1e 23(1p,{29:"1v"});12(1d.2D){15 1o.1M(1e 1d.2d())}14{15}}1P 1c 3M(){37();1y.5p();12(1k.2E){1i(19 1b 2j 1k.2E){12(1b.1A){11 1r=1e 2w(1b.1g);12(1r){11 17=1r.1B.2U(s=>s.1S.1g==1b.1A);12(17){11 1p="1R://1B.25.1Q/2e/1V/"+1b.1g+"/1F/"+17.1S.3b+"!"+1b.1n+"?1z="+1O;11 1d=1e 23(1p,{29:"1v"});12(1d.2D){11 1r=1o.1M(1e 1d.2d());3k(1r.1F)}}}}14{11 1f=[];19 1U;1i(19 1n 2j 1b.1f){11 m=/^(.+)!(.+):([a-1X-Z]?)([0-9]?)/.4y(1n);12(m[3]!=""&&m[4]!=""){1f.1l(1n)}14{12(!1U){1U=1e 2w(1b.1g)}11 17=1U.1B.2U(s=>s.1S.3b==m[1]);12(17){11 2g=17.1S.4B;1f.1l(m[1]+"!"+m[2]+":"+(m[3]?m[3]:3q(2g.4n))+(m[4]?m[4]:2g.4Q))}}}11 1p="1R://1B.25.1Q/2e/1V/"+1b.1g+"/1F:4f?1z="+1O+"&1f="+1f.1J("&1f=");11 1d=1e 23(1p,{29:"1v"});12(1d.2D){11 1r=1o.1M(1e 1d.2d());1r.69.1G(1b=>3k(1b.1F))}}}}1e 4D();3s.3D("3M");4S()}1P 1c 4O(){13("4p").27="";11 2k=3z();11 61=2k.1j(1b=>1b.1g);19 2a=[];1i(19 17 2j 2k){12(17.3v){2a.1l("「"+17.2d+"」：解析不可")}14{11 2Y=1e 17.2Y();12(2Y){11 4N=1e 17.3x();11 1p="1R://1B.25.1Q/2e/1V/"+17.1g+"/1F:4f?1z="+1O+"&1f="+4N.1J("&1f=");1e 23(1p,{29:"1v"}).50(1d=>{12(1d.4Y!=3V){2a.1l("「"+17.1g+"」：一部不可")}}).3m(()=>{2a.1l("「"+17.1g+"」：一部不可")})}14{2a.1l("「"+17.1g+"」：利用不可")}}}12(2a.16==0&&2k.16>0){15 2m}14{13("4p").27=2a.1J("<4i>");15 22}}1c 3z(){11 4G=13("3B").1a.1E("\\n").2v(v=>v.16>0);11 1T=[];1i(19 1s 2j 4G){11 17=2M.1v(1s);12(17!=1L){1T.1l(17)}14{1T.1l({2d:1s,3v:2m})}}15 1T}1c 51(a){11 2S=1K 4b(a.16);1i(19 i=0;i<2S.16;i++){2S[i]=a.4l(i)}15 3j.3w(...1K 4c(2S.4k))}1c 4z(a){11 2P=1K 4c(a.16);1i(19 i=0;i<2P.16;i++){2P[i]=a.4l(i)}15 3j.3w(...1K 4b(2P.4k))}1c 3q(a){19 2i=a;11 1j="5h";19 1t="";54(2i>1){11 1d=2i%26;1t=1j[1d]+""+1t;2i=1Y.2V((2i-1)/26)}12(2i==1)1t="A"+1t;15 1t}1c 13(a){15 2u.4A(a)}1c 2o(a){11 1j={ア:"あ",イ:"い",ウ:"う",エ:"え",オ:"お",ぁ:"あ",ぃ:"い",ぅ:"う",ぇ:"え",ぉ:"お",ァ:"あ",ィ:"い",ゥ:"う",ェ:"え",ォ:"お",カ:"か",キ:"き",ク:"く",ケ:"け",コ:"こ",が:"か",ぎ:"き",ぐ:"く",げ:"け",ご:"こ",ガ:"か",ギ:"き",グ:"く",ゲ:"け",ゴ:"こ",サ:"さ",シ:"し",ス:"す",セ:"せ",ソ:"そ",ざ:"さ",じ:"し",ず:"す",ぜ:"せ",ぞ:"そ",ザ:"さ",ジ:"し",ズ:"す",ゼ:"せ",ゾ:"そ",タ:"た",チ:"ち",ツ:"つ",テ:"て",ト:"と",だ:"た",ぢ:"ち",づ:"つ",で:"て",ど:"と",ダ:"た",ヂ:"ち",ヅ:"つ",デ:"て",ド:"と",っ:"つ",ッ:"つ",ナ:"な",ニ:"に",ヌ:"ぬ",ネ:"ね",ノ:"の",ハ:"は",ヒ:"ひ",フ:"ふ",ヘ:"へ",ホ:"ほ",ば:"は",び:"ひ",ぶ:"ふ",べ:"へ",ぼ:"ほ",バ:"は",ビ:"ひ",ブ:"ふ",ベ:"へ",ボ:"ほ",ぱ:"は",ぴ:"ひ",ぷ:"ふ",ぺ:"へ",ぽ:"ほ",パ:"は",ピ:"ひ",プ:"ふ",ペ:"へ",ポ:"ほ",マ:"ま",ミ:"み",ム:"む",メ:"め",モ:"も",ゃ:"や",ゅ:"ゆ",ょ:"よ",ヤ:"や",ユ:"ゆ",ヨ:"よ",ャ:"や",ュ:"ゆ",ョ:"よ",ラ:"ら",リ:"り",ル:"る",レ:"れ",ロ:"ろ",ワ:"わ",ヲ:"を",ン:"ん",a:"A",b:"B",c:"C",d:"D",e:"E",f:"F",g:"G",h:"H",i:"I",j:"J",k:"K",l:"L",m:"M",n:"N",o:"O",p:"P",q:"Q",r:"R",s:"S",t:"T",u:"U",v:"V",w:"W",x:"X",y:"Y",z:"Z",Ａ:"A",Ｂ:"B",Ｃ:"C",Ｄ:"D",Ｅ:"E",Ｆ:"F",Ｇ:"G",ａ:"A",ｂ:"B",ｃ:"C",ｄ:"D",ｅ:"E",ｆ:"F",ｇ:"G",Ｈ:"H",Ｉ:"I",Ｊ:"J",Ｋ:"K",Ｌ:"L",Ｍ:"M",Ｎ:"N",ｈ:"H",ｉ:"I",ｊ:"J",ｋ:"K",ｌ:"L",ｍ:"M",ｎ:"N",Ｏ:"O",Ｐ:"P",Ｑ:"Q",Ｒ:"R",Ｓ:"S",Ｔ:"T",Ｕ:"U",ｏ:"O",ｐ:"P",ｑ:"Q",ｒ:"R",ｓ:"S",ｔ:"T",ｕ:"U",Ｖ:"V",Ｗ:"W",Ｘ:"X",Ｙ:"Y",Ｚ:"Z",ｖ:"V",ｗ:"W",ｘ:"X",ｙ:"Y",ｚ:"Z","０":"0","１":"1","２":"2","３":"3","４":"4","５":"5","６":"6","７":"7","８":"8","９":"9","．":".",ー:"-"};15 a.1E("").1j(c=>1j[c]?1j[c]:c).1J("")}1c 37(){11 1C=2u.5u(\'5z\');1C.2W="37";1C.1m.66=\'3T\';1C.1m.5O=\'3T\';1C.1m.5J=\'2p%\';1C.1m.55=\'2p%\';1C.1m.5U=\'5D\';1C.1m.6a=\'5a\';1C.1m.5S=\'0\';2u.5m.5j(1C)}1c 4S(){11 3u=2u.4A("37");11 4v=3u.5T;4v.5X(3u)}2R 2M{1s;5q(1s){1x.1s=1s.3d()}1P 2Y(){11 1p="1R://1B.25.1Q/2e/1V/"+1x.1g+"?1z="+1O;19 1T;1e 23(1p,{29:"1v"}).50(1d=>1T=1d.4Y==3V).3m(()=>1T=22);15 1T}1P 2w(){11 1p="1R://1B.25.1Q/2e/1V/"+1x.1g+"?1z="+1O;11 1d=1e 23(1p,{29:"1v"});12(1d.2D){15 1o.1M(1e 1d.2d())}14{15}}5G(){12(1x.1A){15[1x.1A+"!"+1x.1n]}14{15 1x.1f}}1P 3x(){11 1U=1e 1x.2w();12(1x.1A){12(1U){11 1A=1x.1A;11 17=1U.1B.2U(s=>s.1S.1g==1A);12(17){15[17.1S.3b+"!"+1x.1n]}14{15}}14{15}}14{11 1f=[];1i(19 1n 2j 1x.1f){11 m=/^(.+)!(.+):([a-1X-Z]?)([0-9]?)/.4y(1n);12(m[3]!=""&&m[4]!=""){1f.1l(1n)}14{11 17=1U.1B.2U(s=>s.1S.3b==m[1]);12(17){11 2g=17.1S.4B;1f.1l(m[1]+"!"+m[2]+":"+(m[3]?m[3]:3q(2g.4n))+(m[4]?m[4]:2g.4Q))}}}15 1f}}64 1v(1s){11 1b=1K 2M(1s);11 3E=1b.1s.33(/1R:\\/\\/5A.5I.1Q\\/1V\\/d\\/([0-2f-1X-4d\\-]+)/);12(3E!=1L){11 3F=1b.1s.33(/5H=(\\d+)/);11 2C=1b.1s.33(/1n=([0-2f-1X-Z]+)(:[0-2f-1X-Z]*)?/);12(3F!=1L&&2C!=1L){1b.1g=3E[1];1b.1A=3F[1];1b.1n=2C[1]+(2C[2]?2C[2]:"");15 1b}14{15 1L}}14{11 1F=1b.1s.1E(/[,，、]+/);1b.1g=1F[0].3d();1b.1f=1F.2G(1).2v(1t=>/.+![0-2f-1X-Z]+:[0-2f-1X-Z]*/.3Q(1t)).1j(1t=>1t.3d());12(/[0-2f-1X-4d\\-]{44}/.3Q(1b.1g)&&1b.1f.16>0){15 1b}14{15 1L}}}}',[],383,'|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||const|if|getById|else|return|length|sheet|correctAnswer|let|value|obj|function|res|await|ranges|sheetId|txt|for|map|params|push|style|range|JSON|req|createParams|data|line|str|cell|get|idx|this|wordMap|key|pageId|sheets|element|nAns|split|values|forEach|hint|history|join|new|null|parse|row|aKey|async|com|https|properties|ret|sheetData|spreadsheets|words|zA|Math|checked|clsAry|disabled|false|fetch|flags|googleapis||innerHTML|localStorage|method|msgList|nTxt|tag3|text|v4|9a|gp|in|num|of|sheetList|span|true|undefined|wordNormalize|100|button_goto|color|count_hit|count_near|document|filter|getSheetData|has|hintObj|kanji_level|limit_answer_maxLength|limit_answer_minLength|m3|ok|resource|sAns|slice|stringify|tableWidth|word|999999|B1|Sheet|add|button_createUrl|bytes|cell2words|class|codeUnits|defaultParams|find|floor|id|inputBox|isReadable|limit_correctAnswer_maxLength|limit_correctAnswer_minLength|limit_word_maxLength|limit_word_minLength|match|none|out|rnd_choice|screenLock|setItem|tag1|tag2|title|today|trim|0a|0b|0c|0d|A1|String|addWords|as|catch|cellList|cells|classList|col2char|colSpan|console|create_random|dom_obj|error|fromCharCode|getFormattedRangeList|getItem|getSheetList|indexOf|input_range|insertCell|log|m1|m2|random|random_choice|replace|set|simpleWordSet|simplify|startup|storedCorrectAnswer|storedValue|tags|test|wordTable|000000|0px|1msKsJutQIyiKl9ZSSuGaN6uAwVegy1sIHK4_wu82Y_M|200|20000|2FFFF|3005|3007|303b|3400|9FFF|Date||E0100|E01EF|F900|FAFF|FE00|FE02|Uint16Array|Uint8Array|Z_|background|batchGet|border|box_url|br|break|buffer|charCodeAt|col|columnCount|converted|create_error|d0|day|decoded|determine|determineButton|dom_obj_parent|encoded|encoded2|exec|fromBinary|getElementById|gridProperties|hintBox|initialize|input_correctAnswer|kanji_regex|lines|location|mu|neighbor|old|path|randomGet|rangeList|range_check|rn|rowCount|rows|screenUnlock|setCreateParams|setHistory|setParams|simpleWord|startsWith|status|tableCols|then|toBinary|toISOString|url|while|width|10px|1mUVGOxryU1d2C24iWAcixa2rgZeN_ZsdXHal_wOEQtE|3px|todayStr|9999|AIzaSyDMcsEVZHO0hO5ivJFDj0UjfSwoN9QTPvo|Array|E54EAB|FFFFFF|Map|Set|ZABCDEFGHIJKLMNOPQRSTUVWXY|alert|appendChild|atob|bad|body|btoa|checkButton|clear|constructor|copy|correct|correct_icon|createElement|date|decodeURI|default|deleteRow|div|docs|encodeURI|execCommand|fixed|flatMap|from|getRangeList|gid|google|height|href|innerText|insertRow|keys|left|neighbor_icon|nextHint|onclick_rnd_choice|opacity|parentNode|position|read|red|removeChild|rndtxt|search|select|sheetIdList|solid|splice|static||top|try|update|valueRanges|zIndex'.split('|'),0,{}))</script></body></html>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="author" content="@MagicalWatosan">
+		<title> Mahoradle </title>
+		<link rel="stylesheet" href="/Mahoradle/stylesheets/top.css"/>
+	</head>
+	<body oncontextmenu="return false;">
+		<table id="words">
+			<colgroup id="tableCols">
+			</colgroup>
+		</table>
+
+		<table border=0>
+			<tr>
+				<td colspan=3>
+					<form action="" onsubmit="return determine();">
+						<input type="text" id="inputBox" >
+						<input type="submit" id="determineButton" value="決定">
+					</form>
+			<tr>
+				<td>
+					<input type="button" id="button_reset" value="リセット" onclick="initialize(true);">
+					<label id="label_button_reset" for="button_reset"> リセット </label>
+				<td>
+					<div class="toggle_button">
+						<input type='checkbox' id="rnd_choice" class="toggle_input" onclick="onclick_rnd_choice()"/>
+						<label for="rnd_choice" class="toggle_label"></label>
+					</div>
+				<td>
+					<span id="rndtxt" style="font-size: 13px; color:#999999"> ランダム選択 </span>
+			<tr>
+				<td>
+					<input type="button" id="button_hint" value="ヒント" onclick="nextHint()"/>
+			<tr>
+				<td colspan=3>
+					<div id="hintBox"></div>
+			<tr>
+				<td>
+					<input type="button" id="button_custom" value="カスタム作成" onclick="creatorDialog.showModal();"/>
+		</table>
+
+		
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+		<dialog id="creatorDialog">
+			<input type="button" value="×" onclick="creatorDialog.close();">
+			<div id="create_error"></div>
+			<table id="table_range">
+				<col  class="col1">
+				<col  class="col2">
+				<col  class="col3">
+				<tr>
+					<td colspan=2> スプレッドシートID, シート名!範囲
+					<td align="right"> <input type="button" id="checkButton" value="読取チェック" onclick="setCreateParams(this);">
+				<tr>
+					<td colspan=3> <textarea id="input_range" class="txt" rows=5 wrap="off" oninput="setCreateParams(this);"></textarea>
+			</table>
+
+			<table>
+				<tr>
+					<td>
+						正解：
+						<input type="text" value="" id="input_correctAnswer" onchange="setCreateParams(this);" disabled>
+						ランダム：
+						<span class="toggle_button">
+							<input type='checkbox' id="create_random" class="toggle_input" onchange="setCreateParams(this);" checked/>
+							<label for="create_random" class="toggle_label"></label>
+						</span>
+				<tr>
+					<td> 読込最小文字数： <input type="text" value=2    id="limit_word_minLength" onchange="setCreateParams(this);">
+				<tr>
+					<td> 読込最大文字数： <input type="text" value=100  id="limit_word_maxLength" onchange="setCreateParams(this);">
+				<tr>
+					<td> 回答最小文字数： <input type="text" value=4    id="limit_answer_minLength" onchange="setCreateParams(this);">
+				<tr>
+					<td> 回答最大文字数： <input type="text" value=100  id="limit_answer_maxLength" onchange="setCreateParams(this);">
+				<tr>
+					<td> 正解最小文字数： <input type="text" value=4    id="limit_correctAnswer_minLength" onchange="setCreateParams(this);">
+				<tr>
+					<td> 正解最大文字数： <input type="text" value=100 id="limit_correctAnswer_maxLength" onchange="setCreateParams(this);">
+				<tr>
+					<td>
+						<select id="kanji_level" onchange="setCreateParams(this);">
+							<option value=0> 漢字を含まない </option>
+							<option value=1 selected> 漢字のみの言葉は含まない </option>
+							<option value=2> 漢字のみの言葉も含む </option>
+						</select>
+			</table>
+
+			<input type="button" id="button_createUrl" value="URL作成・コピー" onclick="setCreateParams(this);" disabled />
+			<input type="button" id="button_goto" value="実行" />
+			<input type="text" id="box_url"/>
+		</dialog>
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		<script type="text/javascript">
+			const wordMap = new Map();
+			const simpleWordSet = new Set();
+			const correctAnswer = {};
+			let tableWidth = 1;
+			const hintObj = [];
+			const cellList = [];
+
+			const defaultParams = {
+				resource: [
+					{
+						sheetId: "1msKsJutQIyiKl9ZSSuGaN6uAwVegy1sIHK4_wu82Y_M",
+						ranges: [
+							'名簿!B1:T',
+							'コンテンツ1!A1:',
+							'コンテンツ2!B1:C'
+						]
+					}
+				],
+				limit_word_minLength: 2,
+				limit_word_maxLength: 100,
+				limit_answer_minLength: 4,
+				limit_answer_maxLength: 100,
+				limit_correctAnswer_minLength: 4,
+				limit_correctAnswer_maxLength: 100,
+				kanji_level: 1,
+				random_choice: false,
+				correctAnswer: undefined
+			};
+
+			getById("input_range").value = "1msKsJutQIyiKl9ZSSuGaN6uAwVegy1sIHK4_wu82Y_M, 名簿!B1:T，コンテンツ1!A1:，コンテンツ2!B1:C\n";
+			const aKey = "AIzaSyDMcsEVZHO0hO5ivJFDj0UjfSwoN9QTPvo";
+//--------------------------------------------------------------------------------------------------------------------//
+			const params = setParams();
+			const history = setHistory();
+			
+			startup();
+			
+			
+			
+			
+//console.log(params);
+			
+//--------------------------------------------------------------------------------------------------------------------//
+			const createParams = {};
+			setCreateParams({});
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function setParams()
+			{
+	/*
+	localStorage.removeItem("params");
+	localStorage.removeItem("correctAnswer");
+//					*/
+				try
+				{
+					const p = JSON.parse(decodeURI(location.search).slice(1));
+
+					if(p.correctAnswer)
+					{
+						const d0 = 	p.correctAnswer.split("").map((v, i) => i % 2 == 1 ? "" : v).join("");
+						const decoded = atob(d0);
+						p.correctAnswer = fromBinary(decoded);
+					}
+
+					for(let key in defaultParams)
+					{
+						if(p[key] == undefined) {
+							p[key] = defaultParams[key];
+						}
+					}
+
+					localStorage.setItem("params", JSON.stringify(p));
+					
+					return p;
+				}
+				catch(e)
+				{
+					console.log(e);
+
+					const p = JSON.parse(localStorage.getItem("params"));
+
+					if(p) {
+						return p;
+					}
+					else
+					{
+						console.log("read default resource");
+
+						return defaultParams;
+					}
+				}
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function setHistory()
+			{
+				const h = JSON.parse(localStorage.getItem("history"));
+
+				return h ? h : [];
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			async function setCreateParams(obj)
+			{
+				if(obj.id == "button_createUrl")
+				{
+					const path = location.href.match(/^[^?]*/)[0];
+					const sheetList = getSheetList();
+					createParams.resource = sheetList.filter(s => !s.error).map(sheet => ({
+						sheetId: sheet.sheetId,
+						ranges: sheet.ranges,
+						pageId: sheet.pageId,
+						range: sheet.range
+					}));
+
+					const url = encodeURI(path + "?" + JSON.stringify(createParams));
+
+					getById("button_goto").disabled = undefined;
+					getById("button_goto").style.color= "#000000";
+
+					getById("box_url").value = url;
+					getById("box_url").select();
+				    document.execCommand('copy');
+					
+				}
+				else if(obj.id == "input_range")
+				{
+					getById("button_createUrl").disabled = true;
+
+					getById("button_goto").style.color= "#999999";
+				}
+				else if(obj.id == "checkButton")
+				{
+					if(await range_check()) {
+						getById("button_createUrl").disabled = undefined;
+					}
+					else {
+						getById("button_createUrl").disabled = true;
+					}
+
+					getById("button_goto").style.color= "#999999";
+				}
+				else
+				{
+					const as = getById("create_random").checked ? "" : getById("input_correctAnswer").value;
+					
+					if(as == "") {
+						createParams.correctAnswer = null;
+					}
+					else
+					{
+						const converted = toBinary(as);
+						const encoded = btoa(converted);
+						const encoded2 = encoded.split("").map(v => v + "" + String.fromCharCode(Math.floor(Math.random() * 26) + 65)).join("");
+						
+						createParams.correctAnswer = encoded2;
+					}
+					
+					createParams.random_choice = getById("create_random").checked;
+					createParams.limit_word_minLength = getById("limit_word_minLength").value;
+					createParams.limit_word_maxLength = getById("limit_word_maxLength").value;
+					createParams.limit_answer_minLength = getById("limit_answer_minLength").value;
+					createParams.limit_answer_maxLength = getById("limit_answer_maxLength").value;
+					createParams.limit_correctAnswer_minLength = getById("limit_correctAnswer_minLength").value;
+					createParams.limit_correctAnswer_maxLength = getById("limit_correctAnswer_maxLength").value;
+					createParams.kanji_level = getById("kanji_level").value;
+
+					getById("button_goto").style.color= "#999999";
+					
+					getById("input_correctAnswer").disabled = getById("create_random").checked;
+				}
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function simplify(word) {
+				return wordNormalize(word.replace(/[ 　・～∼ー―\-!！\?？]/g, ""));
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function nextHint()
+			{
+				if(hintObj.length == 0)
+				{
+					if(wordMap.has(correctAnswer.value))
+					{
+						wordMap.get(correctAnswer.value).forEach(o =>
+						{
+							const hint = o.tag1 + "の" + o.tag2 + (o.tag3 ? "(" + o.tag3 + ")" : "");
+							const flags = hint.split("").map((v, i) => i);
+
+							hintObj.push({
+								res: true,
+								hint: hint,
+								flags: flags,
+								out: flags.map(v => "*")
+							});
+						});
+					}
+				}
+
+				const hint = [];
+				for(let o of hintObj)
+				{
+					if(o.flags.length == 0) {
+						hint.push(o.out.join(""));
+					}
+					else
+					{
+						const idx = o.flags.splice(Math.floor(Math.random() * o.flags.length), 1)[0];
+						o.out[idx] = o.hint[idx];
+
+						hint.push(o.out.join(""));
+
+						break;
+					}
+				}
+
+				getById("hintBox").innerHTML = hint.join("<br>");
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function onclick_rnd_choice() {
+				getById("rndtxt").style.color = getById("rnd_choice").checked ? "#000000" : "#999999";
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function determine(_txt, update=true)
+			{
+	
+				const txt = _txt ? _txt : getById("inputBox").value;
+
+				if(txt != correctAnswer.value && (txt.length < params.limit_answer_minLength || params.limit_answer_maxLength < txt.length))
+				{
+					getById("inputBox").style.background = "#E54EAB";
+alert(params.limit_answer_minLength + "～" + params.limit_answer_maxLength + "文字の範囲で入力してください", "");
+
+					return false;
+				}
+				else {
+					getById("inputBox").style.background = "#FFFFFF";
+				}
+
+				const rn = getById("words").rows.length;
+				const row = getById("words").insertRow(rn);
+
+				const simpleWord = simplify(txt);
+
+				if(simpleWordSet.has(simpleWord) || txt == correctAnswer.value)
+				{
+					const nTxt = wordNormalize(txt);
+					const sAns = correctAnswer.value.split("");
+
+					const clsAry = [];
+					
+					for(let i in txt)
+					{
+						if(i < correctAnswer.value.length && txt[i] == correctAnswer.value[i])
+						{
+							clsAry.push("correct");
+							
+							sAns[i] = "\0";
+						}
+						else {
+							clsAry.push("none");
+						}
+					}
+					
+					for(let i in txt)
+					{
+						if(clsAry[i] == "none")
+						{
+							const idx = sAns.indexOf(txt[i]);
+
+							if(idx != -1)
+							{
+								clsAry[i] = "neighbor";
+
+								sAns[idx] = "\0";
+							}
+						}
+					}
+
+					const nAns = sAns.map(wordNormalize);
+					
+					for(let i in txt)
+					{
+						const cell = row.insertCell();
+
+						if(clsAry[i] != "none") {
+							cell.classList.add(clsAry[i]);
+						}
+						else
+						{
+							const idx = nAns.indexOf(nTxt[i]);
+
+							if(idx != -1)
+							{
+								cell.classList.add("neighbor");
+								nAns[idx] = "\0";
+							}
+							else {
+								cell.classList.add("none");
+							}
+						}
+
+						cell.innerText = txt[i];
+						cell.colSpan = 1;
+					}
+
+					row.insertCell();
+
+					if(txt.length >= tableWidth)
+					{
+						let str = "";
+						tableCols.innerHTML = "";
+
+						for(let i=0 ; i<txt.length ; i++) {
+							str += "<col style='width: 10px;'>";
+						}
+
+						tableCols.innerHTML = str + "<col border='1'>";
+
+						tableWidth = txt.length + 1;
+
+						cellList.forEach(c => c.colSpan = tableWidth);
+					}
+					
+					if(txt == correctAnswer.value)
+					{
+						getById("determineButton").disabled = true;
+
+						for(let i=0 ; i<row.cells.length-1 ; i++)
+						{
+							if(row.cells[i]) {
+								row.cells[i].style.border = "solid 3px red";
+							}
+						}
+					}
+				}
+				else
+				{
+					const nTxt = wordNormalize(txt);
+					const nAns = wordNormalize(correctAnswer.value).split("");
+
+					let count_hit = 0;
+					let count_near = 0;
+
+					for(let i in nTxt)
+					{
+						if(i < nAns.length && nTxt[i] == nAns[i])
+						{
+							count_hit++;
+							nAns[i] = "\0";
+						}
+					}
+
+					for(let i in nTxt)
+					{
+						if(nAns[i] != "\0")
+						{
+							const idx = nAns.indexOf(nTxt[i]);
+
+							if(idx != -1)
+							{
+								count_near++;
+								nAns[idx] = "\0";
+							}
+						}
+					}
+					
+					const cell = row.insertCell();
+					cell.innerHTML = "<span class='bad'>" + txt + "</span>" + (count_hit || count_near ? ":" + (count_hit ? "<span class='correct_icon'>●</span>×" + count_hit : "") + (count_near ? "<span class='neighbor_icon'>●</span>×" + count_near : "") : "");
+					cell.colSpan = tableWidth;
+
+					cellList.push(cell);
+				}
+
+				if(update) {
+					history.push(txt);
+				}
+
+				localStorage.setItem("history", JSON.stringify(history));
+
+				return false;
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function cell2words(cell)
+			{
+				const map = {
+					"(\\": "\0a",
+					"\\)": "\0b",
+					"（\\": "\0c",
+					"\\）": "\0d",
+					"\0a": "(",
+					"\0b": ")",
+					"\0c": "（",
+					"\0d": "）"
+				};
+
+				return cell.replace(/\(\\|\\\)|（\\|\\）/g, m => map[m])
+				           .split("\n").flatMap(s => {
+				        	   if(s.startsWith("//")) {
+				        		   return [s];
+				        	   }
+				        	   else {
+				        		   return s.split(/[，\n\r\t（）()]+/);
+				        	   }
+				           })
+				           .map(v => v.replace(/\0a|\0b|\0c|\0d/g, m => map[m]))
+				           .filter(v => params.limit_word_minLength <= v.length && v.length <= params.limit_word_maxLength);
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function addWords(values)
+			{
+				if(values.length == 0 || values[0].length == 0) {
+					return;
+				}
+				else if(values.length == 1) {
+					values[0].forEach(cell => cell2words(cell).forEach(v =>
+					{
+						if( !wordMap.has(v)) {
+							wordMap.set(v, []);
+						}
+					}));
+				}
+				else if(values[0].length == 1) {
+					values.forEach(row => cell2words(row[0]).forEach(v =>
+					{
+						if( !wordMap.has(v)) {
+							wordMap.set(v, []);
+						}
+					}));
+				}
+				else
+				{
+					for(let i=1 ; i<values.length ; i++)
+					{
+						const tag1 = values[i][0];
+
+						for(let j=1 ; j<values[i].length ; j++)
+						{
+							const tag2 = values[0][j];
+							const words = cell2words(values[i][j]);
+
+							let tag3 = "";
+
+							words.forEach(v =>
+							{
+								const tags = {
+									tag1: tag1,
+									tag2: tag2,
+									tag3: tag3.length > 0 ? tag3 : undefined
+								};
+
+								if(v.startsWith("//")) {
+									tag3 = v.slice(2).trim();
+								}
+								else if(wordMap.has(v)) {
+									wordMap.get(v).push(tags);
+								}
+								else
+								{
+									wordMap.set(v, [tags]);
+									simpleWordSet.add(simplify(v));
+								}
+							});
+						}
+					}
+				}
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function randomGet()
+			{
+				const kanji_regex = params.kanji_level == 0 ? /([\u{3005}\u{3007}\u{303b}\u{3400}-\u{9FFF}\u{F900}-\u{FAFF}\u{20000}-\u{2FFFF}][\u{E0100}-\u{E01EF}\u{FE00}-\u{FE02}]?)/mu
+		                  : params.kanji_level == 1 ? /^([\u{3005}\u{3007}\u{303b}\u{3400}-\u{9FFF}\u{F900}-\u{FAFF}\u{20000}-\u{2FFFF}][\u{E0100}-\u{E01EF}\u{FE00}-\u{FE02}]?|[ 　])+$/mu
+		                  :                           /^$/;
+
+				const words = Array.from(wordMap.keys()).filter(word =>
+				{
+					const l = word.length;
+
+					if(l < params.limit_correctAnswer_minLength || params.limit_correctAnswer_maxLength < l) {
+						return false;
+					}
+					else {
+						return !kanji_regex.test(word);
+					}
+				});
+		
+				return words[Math.floor(words.length * Math.random())];
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			async function initialize(reset)
+			{
+				const wordTable = getById("words");
+				while(wordTable.rows[0]) {
+					wordTable.deleteRow(0);
+				}
+				
+				correctAnswer.old = correctAnswer.value;
+				const today = new Date();
+				const todayStr = today.toISOString().slice(0, 10);
+				const storedCorrectAnswer = localStorage.getItem("correctAnswer");
+				const storedValue = !getById("rnd_choice").checked && storedCorrectAnswer ? JSON.parse(storedCorrectAnswer).value : null;
+				
+				if(getById("rnd_choice").checked) {
+					params.correctAnswer = null;
+				}
+				
+				if(correctAnswer.value = params.correctAnswer) {}
+				else if( !reset && storedValue) {
+					correctAnswer.value = storedValue;
+				}
+				else if(params.random_choice || getById("rnd_choice").checked)
+				{
+					correctAnswer.value = randomGet();
+				}
+				else
+				{
+					const sheet = Sheet.get("1mUVGOxryU1d2C24iWAcixa2rgZeN_ZsdXHal_wOEQtE，シート1!A1:B");
+					const range = (await sheet.getFormattedRangeList())[0];
+					const req = "https://sheets.googleapis.com/v4/spreadsheets/" + sheet.sheetId + "/values/"
+			 				  + range + "?key=" + aKey;
+
+					const res = await fetch(req, {
+						method: "get"
+					});
+
+					if(res.ok)
+					{
+						const data = JSON.parse(await res.text()).values;
+
+						for(let i=0 ; i<data.length ; i++)
+						{
+											
+							if(data[i][0] != "" && data[i][1] != "")
+							{
+								const day = new Date(data[i][0]);
+
+								if(day > today) {
+									break;
+								}
+
+								correctAnswer.value = data[i][1];
+							}
+						}
+					}
+					
+					correctAnswer.date = today.toISOString().slice(0, 10);
+				}
+
+				if(reset || correctAnswer.old != correctAnswer.value)
+				{
+					history.length = 0;
+					localStorage.setItem("history", JSON.stringify(history));
+				}
+				else {
+					history.forEach(word => determine(word, false));
+				}
+
+				localStorage.setItem("correctAnswer", JSON.stringify(correctAnswer));
+				hintObj.length = 0;
+
+				getById("inputBox").value = "";
+				getById("hintBox").innerHTML = "";
+				
+				getById("determineButton").disabled = undefined;
+				
+/*
+				const kanji_regex = params.kanji_level == 0 ? /([\u{3005}\u{3007}\u{303b}\u{3400}-\u{9FFF}\u{F900}-\u{FAFF}\u{20000}-\u{2FFFF}][\u{E0100}-\u{E01EF}\u{FE00}-\u{FE02}]?)/mu
+							       : params.kanji_level == 1 ? /^([\u{3005}\u{3007}\u{303b}\u{3400}-\u{9FFF}\u{F900}-\u{FAFF}\u{20000}-\u{2FFFF}][\u{E0100}-\u{E01EF}\u{FE00}-\u{FE02}]?|[ 　])+$/mu
+							       :                           /^$/;
+
+				const words = Array.from(wordMap.keys()).filter(word =>
+				{
+					const l = word.length;
+
+					if(l < params.limit_correctAnswer_minLength || params.limit_correctAnswer_maxLength < l) {
+						return false;
+					}
+					else {
+						return !kanji_regex.test(word);
+					}
+				});
+
+				const ary = [];
+				for(let i=0 ; i<200 ; i++) {
+					ary.push(words[Math.floor(Math.random() * words.length)]);
+				}
+				console.log(ary.join("\n"));
+//*/
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			async function getSheetData(sheetId)
+			{
+				const req = "https://sheets.googleapis.com/v4/spreadsheets/" + sheetId + "?key=" + aKey;
+
+				const res = await fetch(req, {
+					method: "get"
+				});
+
+				if(res.ok) {
+					return JSON.parse(await res.text());
+				}
+				else {
+					return;
+				}
+			}
+//--------------------------------------------------------------------------------------------------------------------//
+			async function startup()
+			{
+				screenLock();
+
+				wordMap.clear();
+
+				if(params.resource)
+				{
+					for(let obj of params.resource)
+					{
+						if(obj.pageId)
+						{
+							const data = await getSheetData(obj.sheetId);
+
+							if(data)
+							{
+								const sheet = data.sheets.find(s => s.properties.sheetId == obj.pageId);
+
+								if(sheet)
+								{
+									const req = "https://sheets.googleapis.com/v4/spreadsheets/" + obj.sheetId + "/values/"
+									          + sheet.properties.title + "!" + obj.range + "?key=" + aKey;
+
+									const res = await fetch(req, {
+										method: "get"
+									});
+
+									if(res.ok)
+									{
+										const data = JSON.parse(await res.text());
+
+										addWords(data.values);
+									}
+								}
+							}
+						}
+						else
+						{
+							const ranges = [];
+
+							let sheetData;
+
+							for(let range of obj.ranges)
+							{
+								const m = /^(.+)!(.+):([a-zA-Z]?)([0-9]?)/.exec(range);
+
+								if(m[3] != "" && m[4] != "") {
+									ranges.push(range);
+								}
+								else
+								{
+									if( !sheetData) {
+										sheetData = await getSheetData(obj.sheetId);
+									}
+
+									const sheet = sheetData.sheets.find(s => s.properties.title == m[1]);
+
+									if(sheet)
+									{
+										const gp = sheet.properties.gridProperties;
+
+										ranges.push(m[1] + "!" + m[2] + ":" + (m[3] ? m[3] : col2char(gp.columnCount)) + (m[4] ? m[4] : gp.rowCount));
+									}
+								}
+							}
+							
+							const req = "https://sheets.googleapis.com/v4/spreadsheets/" + obj.sheetId + "/values:batchGet?key=" + aKey
+					          + "&ranges=" + ranges.join("&ranges=");
+
+							const res = await fetch(req, {
+								method: "get"
+							});
+
+							if(res.ok)
+							{
+								const data = JSON.parse(await res.text());
+
+								data.valueRanges.forEach(obj => addWords(obj.values));
+							}
+						}
+					}
+				}
+
+//console.log(wordMap);
+
+				await initialize();
+
+				console.log("startup");
+
+				screenUnlock();
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			async function range_check()
+			{
+				getById("create_error").innerHTML = "";
+
+				const sheetList = getSheetList();
+				const sheetIdList = sheetList.map(obj => obj.sheetId);
+
+				let msgList = [];
+
+				for(let sheet of sheetList)
+				{
+					if(sheet.error) {
+						msgList.push("「" + sheet.text + "」：解析不可");
+					}
+					else
+					{
+						const isReadable = await sheet.isReadable();
+
+						if(isReadable)
+						{
+							const rangeList = await sheet.getFormattedRangeList();
+
+							const req = "https://sheets.googleapis.com/v4/spreadsheets/" + sheet.sheetId + "/values:batchGet?key=" + aKey
+									   + "&ranges=" + rangeList.join("&ranges=");
+
+							await fetch(req, {
+								method: "get"
+							}).then(res => {
+								if(res.status != 200) {
+									msgList.push("「" + sheet.sheetId + "」：一部不可");
+								}
+							}).catch(() => {
+								msgList.push("「" + sheet.sheetId + "」：一部不可");
+							});
+						}
+						else {
+							msgList.push("「" + sheet.sheetId + "」：利用不可");
+						}
+					}
+				}
+
+				if(msgList.length == 0 && sheetList.length > 0) {
+					return true;
+				}
+				else
+				{
+					getById("create_error").innerHTML = msgList.join("<br>");
+
+					return false;
+				}
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function getSheetList()
+			{
+				const lines = getById("input_range").value.split("\n").filter(v => v.length > 0);
+				const ret = [];
+
+				for(let line of lines)
+				{
+					const sheet = Sheet.get(line);
+					
+					if(sheet != null) {
+						ret.push(sheet);
+					}
+					else {
+						ret.push({
+							text: line,
+							error: true
+						});
+					}
+				}
+
+				return ret;
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function toBinary(string)
+			{
+				const codeUnits = new Uint16Array(string.length);
+
+				for (let i = 0; i < codeUnits.length; i++) {
+					codeUnits[i] = string.charCodeAt(i);
+				}
+
+				return String.fromCharCode(...new Uint8Array(codeUnits.buffer));
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function fromBinary(binary)
+			{
+				const bytes = new Uint8Array(binary.length);
+
+				for (let i = 0; i < bytes.length; i++) {
+					bytes[i] = binary.charCodeAt(i);
+				}
+
+				return String.fromCharCode(...new Uint16Array(bytes.buffer));
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function col2char(colNum)
+			{
+				let num = colNum;
+
+				const map = "ZABCDEFGHIJKLMNOPQRSTUVWXY";
+
+				let str = "";
+	
+				while(num > 1)
+				{
+					const res = num % 26;
+		
+					str = map[res] + "" + str;
+		
+					num = Math.floor((num - 1) / 26);
+				}
+	
+				if(num == 1)
+					str = "A" + str;
+	
+				return str;
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function getById(tag) {
+				return document.getElementById(tag);
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function wordNormalize(word)
+			{
+				const map = {
+					ア: "あ", イ: "い", ウ: "う", エ: "え", オ: "お",
+					ぁ: "あ", ぃ: "い", ぅ: "う", ぇ: "え", ぉ: "お",
+					ァ: "あ", ィ: "い", ゥ: "う", ェ: "え", ォ: "お",
+					カ: "か", キ: "き", ク: "く", ケ: "け", コ: "こ",
+					が: "か", ぎ: "き", ぐ: "く", げ: "け", ご: "こ",
+					ガ: "か", ギ: "き", グ: "く", ゲ: "け", ゴ: "こ",
+					サ: "さ", シ: "し", ス: "す", セ: "せ", ソ: "そ",
+					ざ: "さ", じ: "し", ず: "す", ぜ: "せ", ぞ: "そ",
+					ザ: "さ", ジ: "し", ズ: "す", ゼ: "せ", ゾ: "そ",
+					タ: "た", チ: "ち", ツ: "つ", テ: "て", ト: "と",
+					だ: "た", ぢ: "ち", づ: "つ", で: "て", ど: "と",
+					ダ: "た", ヂ: "ち", ヅ: "つ", デ: "て", ド: "と",
+					っ: "つ", ッ: "つ",
+					ナ: "な", ニ: "に", ヌ: "ぬ", ネ: "ね", ノ: "の",
+					ハ: "は", ヒ: "ひ", フ: "ふ", ヘ: "へ", ホ: "ほ",
+					ば: "は", び: "ひ", ぶ: "ふ", べ: "へ", ぼ: "ほ",
+					バ: "は", ビ: "ひ", ブ: "ふ", ベ: "へ", ボ: "ほ",
+					ぱ: "は", ぴ: "ひ", ぷ: "ふ", ぺ: "へ", ぽ: "ほ",
+					パ: "は", ピ: "ひ", プ: "ふ", ペ: "へ", ポ: "ほ",
+					マ: "ま", ミ: "み", ム: "む", メ: "め", モ: "も",
+					ゃ: "や", ゅ: "ゆ", ょ: "よ",
+					ヤ: "や", ユ: "ゆ", ヨ: "よ",
+					ャ: "や", ュ: "ゆ", ョ: "よ",
+					ラ: "ら", リ: "り", ル: "る", レ: "れ", ロ: "ろ",
+					ワ: "わ", ヲ: "を", ン: "ん",
+					a: "A", b: "B", c: "C", d: "D", e: "E", f: "F", g: "G",
+					h: "H", i: "I", j: "J", k: "K", l: "L", m: "M", n: "N",
+					o: "O", p: "P", q: "Q", r: "R", s: "S", t: "T", u: "U",
+					v: "V", w: "W", x: "X", y: "Y", z: "Z",
+					Ａ: "A", Ｂ: "B", Ｃ: "C", Ｄ: "D", Ｅ: "E", Ｆ: "F", Ｇ: "G",
+					ａ: "A", ｂ: "B", ｃ: "C", ｄ: "D", ｅ: "E", ｆ: "F", ｇ: "G",
+					Ｈ: "H", Ｉ: "I", Ｊ: "J", Ｋ: "K", Ｌ: "L", Ｍ: "M", Ｎ: "N",
+					ｈ: "H", ｉ: "I", ｊ: "J", ｋ: "K", ｌ: "L", ｍ: "M", ｎ: "N",
+					Ｏ: "O", Ｐ: "P", Ｑ: "Q", Ｒ: "R", Ｓ: "S", Ｔ: "T", Ｕ: "U",
+					ｏ: "O", ｐ: "P", ｑ: "Q", ｒ: "R", ｓ: "S", ｔ: "T", ｕ: "U",
+					Ｖ: "V", Ｗ: "W", Ｘ: "X", Ｙ: "Y", Ｚ: "Z",
+					ｖ: "V", ｗ: "W", ｘ: "X", ｙ: "Y", ｚ: "Z",
+						"０": "0", "１": "1", "２": "2", "３": "3", "４": "4",
+					"５": "5", "６": "6", "７": "7", "８": "8", "９": "9",
+					"．": ".", ー:"-"
+				};
+
+				return word.split("").map(c => map[c] ? map[c] : c).join("");
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function screenLock()
+			{
+				// ロック用のdivを生成
+				const element = document.createElement('div');
+				element.id = "screenLock";
+				// ロック用のスタイル
+				element.style.top = '0px';
+				element.style.left = '0px';
+				element.style.height = '100%';
+				element.style.width = '100%';
+				element.style.position = 'fixed';
+				element.style.zIndex = '9999';
+				element.style.opacity = '0';
+
+				document.body.appendChild(element);
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			function screenUnlock()
+			{
+				const dom_obj = document.getElementById("screenLock");
+				const dom_obj_parent = dom_obj.parentNode;
+				dom_obj_parent.removeChild(dom_obj);
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+			class Sheet
+			{
+				line;
+
+				constructor(line) {
+					this.line = line.trim();
+				}
+//--------------------------------------------------------------------------------------------------------------------//
+				async isReadable()
+				{
+					const req = "https://sheets.googleapis.com/v4/spreadsheets/" + this.sheetId + "?key=" + aKey;
+
+					let ret;
+
+					await fetch(req, {
+						method: "get"
+					}).then(res =>
+						ret = res.status == 200
+					).catch(() =>
+						ret = false
+					);
+					
+					return ret;
+				}
+//--------------------------------------------------------------------------------------------------------------------//
+				async getSheetData()
+				{
+					const req = "https://sheets.googleapis.com/v4/spreadsheets/" + this.sheetId + "?key=" + aKey;
+
+					const res = await fetch(req, {
+						method: "get"
+					});
+
+					if(res.ok) {
+						return JSON.parse(await res.text());
+					}
+					else {
+						return;
+					}
+				}
+//--------------------------------------------------------------------------------------------------------------------//
+				getRangeList()
+				{
+					if(this.pageId) {
+						return [this.pageId + "!" + this.range];
+					}
+					else {
+						return this.ranges;
+					}
+				}
+//--------------------------------------------------------------------------------------------------------------------//
+				async getFormattedRangeList()
+				{
+					const sheetData = await this.getSheetData();
+
+					if(this.pageId)
+					{
+						if(sheetData)
+						{
+							const pageId = this.pageId;
+							const sheet = sheetData.sheets.find(s => s.properties.sheetId == pageId);
+							
+							if(sheet) {
+								return [sheet.properties.title + "!" + this.range];
+							}
+							else {
+								return;
+							}
+						}
+						else {
+							return;
+						}
+					}
+					else
+					{
+						const ranges = [];
+						
+						for(let range of this.ranges)
+						{
+							const m = /^(.+)!(.+):([a-zA-Z]?)([0-9]?)/.exec(range);
+
+							if(m[3] != "" && m[4] != "") {
+								ranges.push(range);
+							}
+							else
+							{
+								const sheet = sheetData.sheets.find(s => s.properties.title == m[1]);
+
+								if(sheet)
+								{
+									const gp = sheet.properties.gridProperties;
+
+									ranges.push(m[1] + "!" + m[2] + ":" + (m[3] ? m[3] : col2char(gp.columnCount)) + (m[4] ? m[4] : gp.rowCount));
+								}
+							}
+						}
+						
+						return ranges;
+					}
+				}
+//--------------------------------------------------------------------------------------------------------------------//
+				static get(line)
+				{
+					const obj = new Sheet(line);
+					const m1 = obj.line.match(/https:\/\/docs.google.com\/spreadsheets\/d\/([0-9a-zA-Z_\-]+)/);
+
+					if(m1 != null)
+					{
+						const m2 = obj.line.match(/gid=(\d+)/);
+						const m3 = obj.line.match(/range=([0-9a-zA-Z]+)(:[0-9a-zA-Z]*)?/);
+
+						if(m2 != null && m3 != null)
+						{
+							obj.sheetId = m1[1];
+							obj.pageId = m2[1];
+							obj.range = m3[1] + (m3[2] ? m3[2] : "");
+
+							return obj;
+						}
+						else {
+							return null;
+						}
+					}
+					else
+					{
+						const values = obj.line.split(/[,，、]+/);
+
+						obj.sheetId = values[0].trim();
+						obj.ranges = values.slice(1).filter(str =>
+							/.+![0-9a-zA-Z]+:[0-9a-zA-Z]*/.test(str)
+						).map(str => str.trim());
+
+						if(/[0-9a-zA-Z_\-]{44}/.test(obj.sheetId) && obj.ranges.length > 0) {
+							return obj;
+						}
+						else {
+							return null;
+						}
+					}
+				}
+			}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+		</script>
+	</body>
+</html>
